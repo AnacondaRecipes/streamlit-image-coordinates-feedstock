@@ -1,29 +1,27 @@
 {% set name = "streamlit-image-coordinates" %}
-{% set version = "0.1.3" %}
+{% set version = "0.4.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/streamlit-image-coordinates-{{ version }}.tar.gz
-  sha256: d0218bf2f575ce8553f24f6bc286f347f85f6dd2f36c96dc04b10dd6b74e27ca
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 3c6657df55ad48ba0bc62db4ca4374f762ada6595f390f4ca6fecf18e0a350b4
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
-  # s390x missing streamlit
-  skip: true  # [py<37 or s390x]
+  skip: true  # [py<310]
 
 requirements:
   host:
     - python
     - pip
-    - setuptools
-    - wheel
+    - uv-build
   run:
     - python
-    - streamlit >=1.2
+    - streamlit >=1.34
     - jinja2
 
 test:
@@ -35,8 +33,8 @@ test:
     - pip
 
 about:
-  home: https://github.com/blackary/streamlit-image-coordinates/
-  dev_url: https://github.com/blackary/streamlit-image-coordinates/
+  home: https://github.com/blackary/streamlit-image-coordinates
+  dev_url: https://github.com/blackary/streamlit-image-coordinates
   doc_url: https://github.com/blackary/streamlit-image-coordinates/blob/main/README.md
   summary: Streamlit component that displays an image and returns the coordinates when you click on it
   description: |
