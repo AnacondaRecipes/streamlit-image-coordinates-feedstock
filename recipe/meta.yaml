@@ -18,11 +18,10 @@ requirements:
   host:
     - python
     - pip
-    - uv-build
+    - uv-build >=0.8.4,<0.9.0
   run:
     - python
     - streamlit >=1.34
-    - jinja2
 
 test:
   imports:
