@@ -11,14 +11,17 @@ source:
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
   skip: true  # [py<310]
 
 requirements:
   host:
     - python
     - pip
-    - uv-build >=0.8.4,<0.9.0
+    # Upstream [build] requires: uv-build >=0.8.4,<0.9.0
+    - uv-build >=0.8.4,<0.9.0             # [py<314]
+    # For py314 we have only uv-build 0.9.7
+    - uv-build >=0.8.4,<0.9.7             # [py>=314]
   run:
     - python
     - streamlit >=1.34
@@ -28,8 +31,11 @@ test:
     - streamlit_image_coordinates
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
   requires:
     - pip
+    - pillow
+    - numpy
 
 about:
   home: https://github.com/blackary/streamlit-image-coordinates
