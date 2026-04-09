@@ -20,8 +20,8 @@ requirements:
     - pip
     # Upstream [build] requires: uv-build >=0.8.4,<0.9.0
     - uv-build >=0.8.4,<0.9.0             # [py<314]
-    # For py314 we have only uv-build 0.9.7
-    - uv-build >=0.8.4,<0.9.7             # [py>=314]
+    # For py314 we have only uv-build >=0.9.0
+    - uv-build >=0.8.4,<=0.9.0            # [py>=314]
   run:
     - python
     - streamlit >=1.34
