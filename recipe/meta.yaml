@@ -1,17 +1,17 @@
 {% set name = "streamlit-image-coordinates" %}
-{% set version = "0.4.0" %}
+{% set version = "0.4.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: 3c6657df55ad48ba0bc62db4ca4374f762ada6595f390f4ca6fecf18e0a350b4
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 206795398525adeb4288aec983620377d6d700e16789dda26f4ad5c3ce14dad9
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
   skip: true  # [py<310]
 
 requirements:
@@ -19,9 +19,10 @@ requirements:
     - python
     - pip
     # Upstream [build] requires: uv-build >=0.8.4,<0.9.0
-    - uv-build >=0.8.4,<0.9.0             # [py<314]
+    - uv-build >=0.8.4,<0.9.0  # [py<314]
     # For py314 we have only uv-build >=0.9.0
-    - uv-build >=0.8.4,<=0.9.0            # [py>=314]
+    - uv-build >=0.8.4,<=0.9.0  # [py>=314]
+    - uv_build >=0.8.4,<0.9.0
   run:
     - python
     - streamlit >=1.34
