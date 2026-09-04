@@ -2,7 +2,7 @@
 {% set version = "0.4.1" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
@@ -22,7 +22,6 @@ requirements:
     - uv-build >=0.8.4,<0.9.0  # [py<314]
     # For py314 we have only uv-build >=0.9.0
     - uv-build >=0.8.4,<=0.9.0  # [py>=314]
-    - uv_build >=0.8.4,<0.9.0
   run:
     - python
     - streamlit >=1.34
